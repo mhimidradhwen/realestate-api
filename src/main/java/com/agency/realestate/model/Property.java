@@ -19,12 +19,12 @@ public class Property {
     private String propertyName;
     private String propertyDescription;
     private String propertyAddress;
-    private Boolean propertyAvailablility;
-    private Date createdAt;
     private String propertyImage;
     private Double surface;
     private int nbRooms;
-    private Boolean isArchived;
     private Boolean isForSale;
+    private Boolean propertyAvailablility;
+    private Date createdAt;
+    private Boolean isArchived;
     
 }
