@@ -22,4 +22,9 @@ public class Property {
     private Boolean propertyAvailablility;
     private Date createdAt;
     private String propertyImage;
+    private Double surface;
+    private int nbRooms;
+    private Boolean isArchived;
+    private Boolean isForSale;
+    
 }

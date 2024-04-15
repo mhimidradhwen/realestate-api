@@ -48,6 +48,23 @@ public class PropertyController {
         return new ResponseEntity<List<Property>>(propertyService.getPropertyByAvailabilty(propertyAvailabilty),HttpStatus.OK);
     }
 
+    // Get Properties for rent
+    @GetMapping("/for-rent/")
+    public ResponseEntity<List<Property>> getPropertiesForRent(){
+        return new ResponseEntity<List<Property>>(propertyService.getForRentProperties(),HttpStatus.OK);
+    }
+
+    // Get For sale properties
+    @GetMapping("/for-sale/")
+    public ResponseEntity<List<Property>> getPropertiesForSale(){
+        return new ResponseEntity<List<Property>>(propertyService.getForSaleProperties(),HttpStatus.OK);
+    }
+
+    //Get Archived (saled) properties
+    @GetMapping("/archived/")
+    public ResponseEntity<List<Property>> getArchivedProperties(){
+        return new ResponseEntity<List<Property>>(propertyService.getArchivedProperty(),HttpStatus.OK);
+    }
     // update a property
     @PutMapping
     public ResponseEntity<Property> updateProperty(@RequestBody Property newProperty){

@@ -24,9 +24,12 @@ public class RentService {
     public Rent createRent(Rent rent) throws Exception {
         Optional<Property> propertyOptional = propertyRepository.findById(rent.getPropertyId());
         if (propertyOptional.isPresent()) {
-            if (propertyOptional.get().getPropertyAvailablility() == false) {
+            if ((propertyOptional.get().getPropertyAvailablility() == false)| (propertyOptional.get().getIsArchived())) {
                 throw new Exception("Property not avialbale");
             } else {
+                if (propertyOptional.get().getIsForSale()) {
+                    throw new Exception("Property is for sale not for rent");
+                }
                 propertyOptional.get().setPropertyAvailablility(false);
                 propertyRepository.save(propertyOptional.get());
                 return rentRepository.save(rent);
@@ -45,12 +48,22 @@ public class RentService {
         return rentRepository.findById(rentId).get();
     }
 
+    // get Rents by renterId
+    public List<Rent> getRentsByRenterId(String renterId) throws Exception{
+        List<Rent> rents = rentRepository.findAllByRenterId(renterId);
+        if(rents.size()!=0){
+            return rents;
+        }
+        throw new Exception("No Rents Exists");
+    }
+
     // update a rent
     public Rent updateRent(Rent newRent) throws Exception{
         Optional<Rent> existingRent = rentRepository.findById(newRent.getRentId());
         if (existingRent.isPresent()) {
             existingRent.get().setEndDate(newRent.getEndDate());
             existingRent.get().setMonthlyPrice(newRent.getMonthlyPrice());
+            existingRent.get().setRenterId(newRent.getRenterId());
             return rentRepository.save(existingRent.get());
         }
         throw new Exception("Rent not exist");

@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import com.agency.realestate.model.Rent;
+import com.agency.realestate.model.Sale;
 
-public interface RentRepository extends MongoRepository<Rent, String> {
+public interface SaleRepository extends MongoRepository<Sale, String> {
 
-    @Query(" {renterId:?0}")
-    List<Rent> findAllByRenterId(String renterId);
+    @Query("{ownerId :?0}")
+    List<Sale> findAllByOwnerId(String ownerId);
 
 }

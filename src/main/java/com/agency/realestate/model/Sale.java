@@ -8,26 +8,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Document(collection = "rents")
+
+@Document(collection = "sales")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rent {
+public class Sale {
     
     @Id
-    private String rentId;
-    
-    private String propertyId; // Reference to Property document
-    
-    private Date startDate;
-    
-    private Date endDate;
-    
-    private double monthlyPrice;
-    
-    private String renterName;
-    private String renterId;
+    private String saleId;
+    private String newOwnerId;
+    private String newOwnerName;
+    private String propertyId;
+    private Date saledAt;
+    private Double price;
 
 }
-
-
